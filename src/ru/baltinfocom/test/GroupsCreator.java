@@ -35,4 +35,8 @@ public class GroupsCreator {
         }
         return groups;
     }
+
+    public static Integer getBigGroupsNumber(List<Group> groups){
+        Long bigGroupsNumber = groups.stream().filter(group -> group.getRowsNumber() > 1).count();
+        return bigGroupsNumber.intValue();    }
 }

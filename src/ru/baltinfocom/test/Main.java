@@ -15,8 +15,8 @@ public class Main {
         GroupIndexesListCreator groupIndexesListCreator = new GroupIndexesListCreator(recordMap);
         groupIndexesListCreator.createGroupList();
         List<Set<Integer>> groupIndexesList = groupIndexesListCreator.getGroupIndexesList();
-        Integer bigGroupsNumber = groupIndexesListCreator.getBigGroupsNumber();
         List<Group> groups = GroupsCreator.createGroups(records, groupIndexesList);
+        Integer bigGroupsNumber = GroupsCreator.getBigGroupsNumber(groups);
         FileWriter.writeToFile(groups, bigGroupsNumber, "C:\\lng\\result.csv");
     }
 }

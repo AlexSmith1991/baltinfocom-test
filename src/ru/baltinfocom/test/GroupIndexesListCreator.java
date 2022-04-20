@@ -16,23 +16,13 @@ public class GroupIndexesListCreator {
      */
     private Map<Integer, Set<Integer>> recordMap;
 
-    /**
-     * Количество групп, имеющих больше одной строки
-     */
-    private Integer bigGroupsNumber;
-
     public GroupIndexesListCreator(Map<Integer, Set<Integer>> records) {
         this.recordMap = records;
         groupIndexesList = new ArrayList<>();
-        bigGroupsNumber = 0;
     }
 
     public List<Set<Integer>> getGroupIndexesList(){
         return groupIndexesList;
-    }
-
-    public Integer getBigGroupsNumber() {
-        return bigGroupsNumber;
     }
 
     /**
@@ -43,7 +33,6 @@ public class GroupIndexesListCreator {
             int listSize = entry.getValue().size();
             Set<Integer> group = new HashSet<>();
             if (listSize > 1){//если строка имеет пересечение с несколькими строками - запускается рекурсивный поиск всех прямых и косвенных пересечений
-                bigGroupsNumber++;
                 readLevel(entry.getKey(), group);
                 groupIndexesList.add(group);
             } else if (listSize == 1) {//если строка имеет только одно пересечение - это пересечение с самой собой, строка ни в какую большую группу не входит
